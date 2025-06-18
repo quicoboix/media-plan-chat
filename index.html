@@ -3,50 +3,65 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Chat Media Plan - Shake Again</title>
+  <title>Chat Media Plan - Pantalla Completa</title>
+  <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+      background: #313131;
+      overflow: hidden;
+    }
+    /* Forzar que el chat ocupe toda la pantalla */
+    .n8n-chat-ui-modal,
+    .n8n-chat-ui-chat-window {
+      width: 100vw !important;
+      height: 100vh !important;
+      max-width: 100vw !important;
+      max-height: 100vh !important;
+      border-radius: 0 !important;
+      top: 0 !important;
+      left: 0 !important;
+      right: 0 !important;
+      bottom: 0 !important;
+      box-shadow: none !important;
+      z-index: 9999 !important;
+    }
+    /* Ocultar botón flotante */
+    .n8n-chat-ui-floating-button {
+      display: none !important;
+    }
+  </style>
 </head>
-<body style="margin:0; background:#313131;">
-  <!-- El chat aparecerá flotando abajo a la derecha -->
+<body>
   <script type="module" defer>
     import Chatbot from "https://cdn.n8nchatui.com/v1/embed.js";
     Chatbot.init({
-      "n8nChatUrl": "https://primary-production-639b.up.railway.app/webhook/07d5295f-2b0c-4efb-bcf1-18755bd8739a/chat", // Pega aquí tu URL real de n8n
+      "n8nChatUrl": "YOUR_N8N_CHAT_TRIGGER_NODE_WEBHOOK_URL", // Pon aquí tu URL de n8n
       "metadata": {},
       "theme": {
         "button": {
           "backgroundColor": "#ffb8b8",
-          "right": 20,
-          "bottom": 20,
-          "size": 50,
-          "iconColor": "#373434",
-          "customIconSrc": "https://shakeagain.com/wp-content/uploads/2023/01/SA-logo-color.png",
-          "customIconSize": 60,
-          "customIconBorderRadius": 15,
           "autoWindowOpen": {
-            "autoOpen": false,
-            "openDelay": 2
+            "autoOpen": true,    // Se abre al cargar la página
+            "openDelay": 0
           },
-          "borderRadius": "rounded"
+          "displayButton": false // Oculta el botón flotante
         },
         "tooltip": {
-          "showTooltip": true,
-          "tooltipMessage": "Hola 👋, ¡Creemos un media plan!",
-          "tooltipBackgroundColor": "#fff5f5",
-          "tooltipTextColor": "#1c1c1c",
-          "tooltipFontSize": 15
+          "showTooltip": false // Oculta tooltip porque no hay botón
         },
         "chatWindow": {
-          "borderRadiusStyle": "rounded",
+          "borderRadiusStyle": "none",
           "avatarBorderRadius": 30,
           "messageBorderRadius": 6,
           "showTitle": true,
           "title": "Shake Again Media Plan",
           "titleAvatarSrc": "https://shakeagain.com/wp-content/uploads/2023/01/SA-logo-color.png",
-          "welcomeMessage": "Hola! Soy tu asistente de generación de Media Plan. Dime sobre que cliente quieres que comencemos! :)",
+          "welcomeMessage": "Hola! Soy tu asistente de generación de Media Plan. Dime sobre qué cliente quieres que comencemos! :)",
           "errorMessage": "Please connect me to n8n first",
           "backgroundColor": "#313131",
-          "height": 600,
-          "width": 400,
+          "height": "100vh",
+          "width": "100vw",
           "fontSize": 16,
           "starterPromptFontSize": 15,
           "renderHTML": false,
