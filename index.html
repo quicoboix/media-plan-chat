@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Chat Media Plan - Shake Again</title>
+</head>
+<body style="margin:0; background:#313131;">
+  <!-- El chat aparecerá flotando abajo a la derecha -->
+  <script type="module" defer>
+    import Chatbot from "https://cdn.n8nchatui.com/v1/embed.js";
+    Chatbot.init({
+      "n8nChatUrl": "https://primary-production-639b.up.railway.app/webhook/07d5295f-2b0c-4efb-bcf1-18755bd8739a/chat", // Pega aquí tu URL real de n8n
+      "metadata": {},
+      "theme": {
+        "button": {
+          "backgroundColor": "#ffb8b8",
+          "right": 20,
+          "bottom": 20,
+          "size": 50,
+          "iconColor": "#373434",
+          "customIconSrc": "https://shakeagain.com/wp-content/uploads/2023/01/SA-logo-color.png",
+          "customIconSize": 60,
+          "customIconBorderRadius": 15,
+          "autoWindowOpen": {
+            "autoOpen": false,
+            "openDelay": 2
+          },
+          "borderRadius": "rounded"
+        },
+        "tooltip": {
+          "showTooltip": true,
+          "tooltipMessage": "Hola 👋, ¡Creemos un media plan!",
+          "tooltipBackgroundColor": "#fff5f5",
+          "tooltipTextColor": "#1c1c1c",
+          "tooltipFontSize": 15
+        },
+        "chatWindow": {
+          "borderRadiusStyle": "rounded",
+          "avatarBorderRadius": 30,
+          "messageBorderRadius": 6,
+          "showTitle": true,
+          "title": "Shake Again Media Plan",
+          "titleAvatarSrc": "https://shakeagain.com/wp-content/uploads/2023/01/SA-logo-color.png",
+          "welcomeMessage": "Hola! Soy tu asistente de generación de Media Plan. Dime sobre que cliente quieres que comencemos! :)",
+          "errorMessage": "Please connect me to n8n first",
+          "backgroundColor": "#313131",
+          "height": 600,
+          "width": 400,
+          "fontSize": 16,
+          "starterPromptFontSize": 15,
+          "renderHTML": false,
+          "clearChatOnReload": false,
+          "botMessage": {
+            "backgroundColor": "#E54E47",
+            "textColor": "#ffff",
+            "showAvatar": true,
+            "avatarSrc": "https://www.svgrepo.com/show/334455/bot.svg"
+          },
+          "userMessage": {
+            "backgroundColor": "#d77570",
+            "textColor": "#fffff",
+            "showAvatar": true,
+            "avatarSrc": "https://www.svgrepo.com/show/532363/user-alt-1.svg"
+          },
+          "textInput": {
+            "placeholder": "¿Con qué cliente empezamos?",
+            "backgroundColor": "#ffff",
+            "textColor": "#1e1e1f",
+            "sendButtonColor": "#f33939",
+            "maxChars": 50,
+            "maxCharsWarningMessage": "Has superado el límite de caracteres. Por favor, escribe menos de 50.",
+            "autoFocus": false,
+            "borderRadius": 6,
+            "sendButtonBorderRadius": 50
+          }
+        }
+      }
+    });
+  </script>
+</body>
+</html>
