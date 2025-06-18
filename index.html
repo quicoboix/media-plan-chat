@@ -5,34 +5,47 @@
   <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
   <title>Shake Again - Media Plan Chat</title>
   <style>
-    body {
-      background: #313131;
+    :root {
+      --bot-bg: #e54e47;
+      --bot-txt: #fff;
+      --user-bg: #fff;
+      --user-txt: #232323;
+      --system-bg: #ffe0ab;
+      --system-txt: #312000;
+      --input-bg: #fff;
+      --input-txt: #232323;
+      --accent: #e54e47;
+      --radius: 12px;
+    }
+    html, body {
+      height: 100%;
       margin: 0;
       padding: 0;
+    }
+    body {
+      background: #313131;
       font-family: 'Segoe UI', Arial, sans-serif;
-      box-sizing: border-box;
       width: 100vw;
-      height: 100vh;
+      min-height: 100vh;
+      box-sizing: border-box;
       overflow: hidden;
     }
-
     #logo-header {
       width: 100vw;
       display: flex;
       justify-content: center;
       align-items: flex-start;
-      margin-top: 25px;
-      margin-bottom: 30px;
+      margin-top: 18px;
+      margin-bottom: 18px;
     }
     #logo-header img {
-      width: 75px;
-      height: 75px;
-      border-radius: 22px;
-      box-shadow: 0 2px 12px rgba(0,0,0,0.22);
-      border: 3px solid #fff;
-      background: #fff;
+      width: 55px;
+      height: 55px;
+      border-radius: 13px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.14);
+      border: 1.5px solid #fff;
       object-fit: contain;
-      padding: 5px;
+      padding: 2px;
     }
     .chat-container {
       display: flex;
@@ -40,45 +53,50 @@
       justify-content: flex-end;
       align-items: center;
       width: 100vw;
-      height: calc(100vh - 120px);
+      height: calc(100vh - 90px);
       box-sizing: border-box;
     }
     .messages-area {
       width: 100%;
-      max-width: 800px;
+      max-width: 700px;
       flex: 1;
       display: flex;
       flex-direction: column;
       align-items: flex-start;
-      gap: 18px;
+      gap: 11px;
       margin: 0 auto;
-      padding: 0 12px;
+      padding: 0 7px;
       overflow-y: auto;
+    }
+    .msg-bot, .msg-user, .msg-system {
+      border-radius: var(--radius);
+      margin-top: 6px;
+      margin-bottom: 2px;
+      padding: 12px 16px;
+      font-size: 1rem;
+      max-width: 80vw;
+      min-width: 50px;
+      word-break: break-word;
+      box-shadow: 0 1px 6px 0 rgba(10,0,0,0.06);
+      border: 1px solid #ffffff09;
     }
     .msg-bot {
       align-self: flex-start;
-      background: #e54e47;
-      color: #fff;
-      border-radius: 18px;
-      margin-top: 6px;
-      margin-bottom: 2px;
-      padding: 20px 24px;
-      font-size: 1.25rem;
-      max-width: 80vw;
-      box-shadow: 0 2px 18px 0 rgba(80, 60, 50, 0.11);
-      border: 1.5px solid #fff3;
+      background: var(--bot-bg);
+      color: var(--bot-txt);
+    }
+    .msg-system {
+      align-self: flex-start;
+      background: var(--system-bg);
+      color: var(--system-txt);
+      font-weight: 500;
+      font-size: 0.99rem;
     }
     .msg-user {
       align-self: flex-end;
-      background: #fff;
-      color: #222;
-      border-radius: 18px;
-      margin-bottom: 2px;
-      padding: 18px 24px;
-      font-size: 1.25rem;
-      max-width: 70vw;
-      box-shadow: 0 1px 10px 0 rgba(10,0,0,0.04);
-      border: 1.5px solid #ddd;
+      background: var(--user-bg);
+      color: var(--user-txt);
+      border: 1px solid #ddd;
     }
     .input-row {
       width: 100vw;
@@ -86,7 +104,7 @@
       justify-content: center;
       align-items: center;
       background: #232323;
-      padding: 22px 8px 16px 8px;
+      padding: 14px 6px 11px 6px;
       position: absolute;
       bottom: 0;
       left: 0;
@@ -95,23 +113,23 @@
     }
     .input-row input {
       width: 100%;
-      max-width: 1200px;
-      padding: 17px 16px;
-      font-size: 1.2rem;
-      border-radius: 8px 0 0 8px;
+      max-width: 950px;
+      padding: 13px 14px;
+      font-size: 1rem;
+      border-radius: 6px 0 0 6px;
       outline: none;
       border: none;
       margin-right: 0;
-      background: #fff;
-      color: #232323;
-      box-shadow: 0 2px 16px 0 rgba(80, 60, 50, 0.06);
+      background: var(--input-bg);
+      color: var(--input-txt);
+      box-shadow: 0 1px 6px 0 rgba(80, 60, 50, 0.06);
     }
     .input-row button {
-      padding: 17px 40px;
-      font-size: 1.2rem;
-      border-radius: 0 8px 8px 0;
+      padding: 13px 32px;
+      font-size: 1rem;
+      border-radius: 0 6px 6px 0;
       border: none;
-      background: #e54e47;
+      background: var(--accent);
       color: #fff;
       font-weight: bold;
       cursor: pointer;
@@ -119,6 +137,24 @@
     }
     .input-row button:hover {
       background: #b0302a;
+    }
+    /* Tablas */
+    .msg-bot table {
+      background: none;
+      color: #fff;
+      border-collapse: collapse;
+      margin-top: 10px;
+      font-size: .98em;
+      width: 100%;
+    }
+    .msg-bot th, .msg-bot td {
+      border-bottom: 1px solid #fff2;
+      padding: 4px 8px;
+    }
+    .msg-bot th {
+      font-weight: 700;
+      color: #ffd;
+      background: none;
     }
   </style>
 </head>
@@ -132,58 +168,71 @@
         Hola! Soy tu asistente de generación de Media Plan.<br>
         Dime sobre qué cliente quieres que comencemos. 🙂
       </div>
-      <div class="msg-bot" style="background:#fbca8c;color:#392f00;font-weight:600">
-        ⚡ ¡Importante! La primera operación puede tardar 1-2 minutos (estamos arrancando motores 😊). El resto de interacciones serán mucho más rápidas.
+      <div class="msg-system">
+        ⚡ <b>¡Importante!</b> La primera operación puede tardar 1-2 minutos (estamos arrancando motores 😊). El resto de interacciones serán mucho más rápidas.
       </div>
     </div>
-    <form id="chat-form" class="input-row">
+    <form id="chat-form" class="input-row" autocomplete="off">
       <input id="chat-input" autocomplete="off" placeholder="¿Con qué cliente empezamos?" />
       <button type="submit">Enviar</button>
     </form>
   </div>
   <script>
-    const webhookUrl = "https://primary-production-639b.up.railway.app/webhook/07d5295f-2b0c-4efb-bcf1-18755bd8739a/chat"; // <-- Cambia esto por tu webhook
+    // Genera un sessionId por user/browser, importante para n8n
+    function getSessionId() {
+      let session = localStorage.getItem("sessionId");
+      if (!session) {
+        session = 'session-' + Math.random().toString(36).substr(2, 12) + '-' + Date.now();
+        localStorage.setItem("sessionId", session);
+      }
+      return session;
+    }
+    const sessionId = getSessionId();
+
+    // TU WEBHOOK aquí:
+    const webhookUrl = "https://primary-production-639b.up.railway.app/webhook/07d5295f-2b0c-4efb-bcf1-18755bd8739a/chat"; // <-- Cambia esto
 
     const messagesDiv = document.getElementById('messages');
     const form = document.getElementById('chat-form');
     const input = document.getElementById('chat-input');
 
-    function addMessage(text, sender = "bot") {
+    function addMessage(text, sender = "bot", asHtml = false) {
       const div = document.createElement('div');
-      div.className = sender === "user" ? "msg-user" : "msg-bot";
-      div.textContent = text;
+      div.className = sender === "user" ? "msg-user" : (sender === "system" ? "msg-system" : "msg-bot");
+      if (asHtml) {
+        div.innerHTML = text;
+      } else {
+        div.textContent = text;
+      }
       messagesDiv.appendChild(div);
       messagesDiv.scrollTop = messagesDiv.scrollHeight;
     }
 
-    // Si la respuesta es un array y tiene campo output, lo muestra bonito:
+    // Ahora responde solo a JSON plano con campo "output"
     function addBotMessageFromOutput(data) {
       try {
-        if (Array.isArray(data) && data.length > 0 && data[0].output) {
-          // Puede ser string, array de objetos, lo que sea
-          let output = data[0].output;
-          if (typeof output === "string") {
-            addMessage(output, "bot");
-          } else if (Array.isArray(output)) {
-            // Formatea tabla sencilla:
-            let keys = Object.keys(output[0] || {});
-            let html = "<table style='width:100%;color:#fff;margin-top:10px;font-size:1.1em'><tr>";
-            keys.forEach(k => html += `<th style='padding:4px 10px;text-align:left;border-bottom:1px solid #fff3'>${k}</th>`);
+        if (typeof data === "object" && data.output) {
+          let output = data.output;
+          // Si es array de objetos, mostrar como tabla
+          if (Array.isArray(output) && output.length && typeof output[0] === "object") {
+            let keys = Object.keys(output[0]);
+            let html = "<table><tr>";
+            keys.forEach(k => html += `<th>${k}</th>`);
             html += "</tr>";
             output.forEach(obj => {
               html += "<tr>";
-              keys.forEach(k => html += `<td style='padding:4px 10px;border-bottom:1px solid #fff1'>${obj[k]}</td>`);
+              keys.forEach(k => html += `<td>${obj[k] ?? ""}</td>`);
               html += "</tr>";
             });
             html += "</table>";
-            const div = document.createElement('div');
-            div.className = "msg-bot";
-            div.innerHTML = html;
-            messagesDiv.appendChild(div);
-            messagesDiv.scrollTop = messagesDiv.scrollHeight;
+            addMessage(html, "bot", true);
+          } else if (typeof output === "string") {
+            addMessage(output, "bot");
           } else {
             addMessage(JSON.stringify(output), "bot");
           }
+        } else if (data && data.message) {
+          addMessage(data.message, "bot");
         } else {
           addMessage(JSON.stringify(data), "bot");
         }
@@ -209,7 +258,7 @@
         const res = await fetch(webhookUrl, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ message: text })
+          body: JSON.stringify({ message: text, sessionId: sessionId })
         });
         const data = await res.json();
         messagesDiv.removeChild(loadingDiv);
